@@ -149,15 +149,15 @@
         display: grid;
         grid-template-columns: 1.2fr 0.8fr;
         gap: 42px;
-        align-items: center;
+        align-items: start;
       }
 
       .hero-text h1 {
-        font-size: clamp(2.4rem, 2rem + 3vw, 4.8rem);
-        line-height: 0.95;
-        letter-spacing: -0.05em;
+        font-size: clamp(2.2rem, 1.9rem + 2vw, 3.8rem);
+        line-height: 1;
+        letter-spacing: -0.04em;
         margin-bottom: 18px;
-        max-width: 10ch;
+        max-width: 7ch;
       }
 
       .hero-text p {
@@ -192,11 +192,12 @@
       .hero-photo {
         display: flex;
         justify-content: center;
+        align-items: flex-start;
       }
 
       .photo-card {
         width: 100%;
-        max-width: 350px;
+        max-width: 330px;
         border: 1px solid var(--line);
         border-radius: 26px;
         overflow: hidden;
@@ -207,6 +208,7 @@
         width: 100%;
         aspect-ratio: 4 / 5;
         object-fit: cover;
+        object-position: center top;
       }
 
       .section-title {
@@ -390,7 +392,7 @@
       <section class="hero" id="inicio">
         <div class="container hero-grid">
           <div class="hero-text">
-            <h1>Backend simples, útil e bem pensado.</h1>
+            <h1>Construindo soluções em .NET.</h1>
             <p>
               Sou Nicolas, desenvolvedor com foco em <strong>C# / .NET</strong>,
               APIs, automação e integração de sistemas. Gosto de transformar
