@@ -49,6 +49,8 @@ a { text-decoration:none; }
 #about{
     width: 100%;
     z-index: 2;
+    margin: 0;
+    padding: 0;
 
     .profile-zone{
         width: 100%;
@@ -71,7 +73,7 @@ a { text-decoration:none; }
     }
 
     
-    .name-zone { margin-top: -2rem; }
+    .name-zone { margin-top: 1.5rem; }
 
     .name-zone h1, 
     .name-zone h2 {
