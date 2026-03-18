@@ -20,7 +20,7 @@
       --primary: #7c9cff;
       --primary-2: #64e2ff;
       --accent: #8b5cf6;
-      --max: 1040px;
+      --max: 1100px;
       --radius: 18px;
     }
 
@@ -142,8 +142,8 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 0.75fr 1.25fr;
-      gap: 58px;
+      grid-template-columns: minmax(340px, 420px) 1fr;
+      gap: 64px;
       align-items: center;
     }
 
@@ -155,9 +155,9 @@
 
     .photo-card {
       width: 100%;
-      max-width: 255px;
+      max-width: 380px;
       border: 1px solid var(--line-strong);
-      border-radius: 22px;
+      border-radius: 24px;
       overflow: hidden;
       background: var(--bg-soft);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
@@ -349,12 +349,16 @@
         grid-template-columns: 1fr;
       }
 
+      .hero-grid {
+        gap: 34px;
+      }
+
       .hero-photo {
         justify-content: flex-start;
       }
 
       .photo-card {
-        max-width: 235px;
+        max-width: 290px;
       }
     }
 
