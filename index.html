@@ -259,36 +259,24 @@
       margin-bottom: 0;
     }
 
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .skills span {
-      padding: 11px 15px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text);
-      font-size: 0.94rem;
-    }
-
-    .about-extra {
-      margin-top: 26px;
-      padding-top: 22px;
-      border-top: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .about-extra span {
+    .about-note {
+      margin-top: 10px;
       color: var(--muted);
       font-size: 0.98rem;
+      line-height: 1.8;
+    }
+
+    .about-note a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.28);
+      text-underline-offset: 4px;
+      transition: 0.2s ease;
+    }
+
+    .about-note a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
     }
 
     .projects {
@@ -399,10 +387,6 @@
       .photo-card img {
         height: 330px;
       }
-
-      .about-extra {
-        align-items: stretch;
-      }
     }
   </style>
 </head>
@@ -459,19 +443,9 @@
             Minha forma de trabalhar está ligada à criação de soluções compreensíveis, bem estruturadas e sustentáveis ao longo do tempo. Documentação, entendimento dos requisitos, organização técnica do projeto, separação de ambientes e continuidade da aplicação fazem parte dessa visão. Tenho minha base principal no ecossistema .NET, com foco atual em .NET 8 e experiência também em outras versões da plataforma, além do uso de recursos ligados a banco de dados, conteinerização e estruturação modular de soluções.
           </p>
 
-          <div class="skills">
-            <span>.NET 8</span>
-            <span>ASP.NET Core</span>
-            <span>APIs REST</span>
-            <span>Banco de Dados</span>
-            <span>Docker</span>
-            <span>Aplicações Web</span>
-          </div>
-
-          <div class="about-extra">
-            <span>Para saber mais, você pode acessar meu currículo completo.</span>
-            <a class="btn btn-secondary" href="./assets/resume.pdf" target="_blank">Baixar currículo</a>
-          </div>
+          <p class="about-note">
+            Para mais detalhes sobre experiência, formação e projetos, meu <a href="./assets/resume.pdf" target="_blank">currículo em PDF</a> está disponível aqui.
+          </p>
         </div>
       </div>
     </section>
