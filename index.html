@@ -275,6 +275,22 @@
       font-size: 0.94rem;
     }
 
+    .about-extra {
+      margin-top: 26px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .about-extra span {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
     .projects {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -383,6 +399,10 @@
       .photo-card img {
         height: 330px;
       }
+
+      .about-extra {
+        align-items: stretch;
+      }
     }
   </style>
 </head>
@@ -446,6 +466,11 @@
             <span>Banco de Dados</span>
             <span>Docker</span>
             <span>Aplicações Web</span>
+          </div>
+
+          <div class="about-extra">
+            <span>Para saber mais, você pode acessar meu currículo completo.</span>
+            <a class="btn btn-secondary" href="./assets/resume.pdf" target="_blank">Baixar currículo</a>
           </div>
         </div>
       </div>
@@ -527,13 +552,12 @@
 
         <div class="contact-box">
           <p>
-            Se quiser entrar em contato, ver meu currículo ou acompanhar meu perfil profissional, os links estão aqui embaixo.
+            Se quiser entrar em contato ou acompanhar meu perfil profissional, os links estão aqui embaixo.
           </p>
 
           <div class="contact-links">
             <a class="btn btn-primary" href="mailto:nfaller.rios@gmail.com">nfaller.rios@gmail.com</a>
             <a class="btn btn-secondary" href="https://www.linkedin.com/in/nicolas-rios-faller-3774a0203" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="btn btn-secondary" href="./assets/resume.pdf" target="_blank">Currículo PDF</a>
           </div>
         </div>
       </div>
