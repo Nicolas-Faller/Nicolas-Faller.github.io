@@ -59,54 +59,6 @@
       margin: 0 auto;
     }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(10px);
-      background: rgba(7, 11, 22, 0.75);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand strong {
-      font-size: 1rem;
-    }
-
-    .brand span {
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      transition: 0.2s;
-      font-size: 0.95rem;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
     .btn {
       display: inline-block;
       padding: 11px 17px;
@@ -137,7 +89,10 @@
     }
 
     .hero {
-      padding: 74px 0 82px;
+      padding: 28px 0 72px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
     }
 
     .hero-grid {
@@ -344,6 +299,11 @@
     }
 
     @media (max-width: 900px) {
+      .hero {
+        min-height: auto;
+        padding: 34px 0 62px;
+      }
+
       .hero-grid,
       .projects {
         grid-template-columns: 1fr;
@@ -367,18 +327,8 @@
     }
 
     @media (max-width: 700px) {
-      .nav {
-        padding: 14px 0;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav-links {
-        gap: 14px;
-      }
-
       .hero {
-        padding: 54px 0 62px;
+        padding: 28px 0 54px;
       }
 
       .hero-grid {
@@ -409,21 +359,6 @@
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container nav">
-      <a class="brand" href="#inicio">
-        <strong>Nicolas Rios Faller</strong>
-        <span>Backend Developer · C# · .NET</span>
-      </a>
-
-      <nav class="nav-links">
-        <a href="#sobre">Sobre</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#contato">Contato</a>
-      </nav>
-    </div>
-  </header>
-
   <main>
     <section class="hero" id="inicio">
       <div class="container hero-grid">
