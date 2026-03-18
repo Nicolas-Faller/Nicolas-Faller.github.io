@@ -10,18 +10,26 @@
   />
   <style>
     :root {
-      --bg: #070b16;
-      --bg-soft: #0d1326;
-      --panel: #10182c;
-      --line: rgba(255, 255, 255, 0.08);
-      --line-strong: rgba(255, 255, 255, 0.14);
-      --text: #eef2ff;
-      --muted: #aab5d6;
-      --primary: #7c9cff;
-      --primary-2: #64e2ff;
-      --accent: #8b5cf6;
-      --max: 1100px;
-      --radius: 18px;
+      --bg: #f7f9fc;
+      --bg-soft: #eef3f9;
+      --surface: #ffffff;
+      --surface-2: #f4f7fb;
+      --line: #dbe4f0;
+      --line-strong: #c9d6e6;
+
+      --text: #122033;
+      --muted: #5f6f85;
+      --title: #0f1f33;
+
+      --primary: #4666ff;
+      --primary-2: #6d5efc;
+      --accent: #0ea5b7;
+
+      --shadow: 0 18px 50px rgba(17, 31, 52, 0.08);
+      --shadow-soft: 0 12px 30px rgba(17, 31, 52, 0.06);
+
+      --max: 1140px;
+      --radius: 22px;
     }
 
     * {
@@ -37,11 +45,11 @@
     body {
       font-family: Inter, Arial, sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(124, 156, 255, 0.15), transparent 28%),
-        radial-gradient(circle at top right, rgba(100, 226, 255, 0.10), transparent 24%),
-        var(--bg);
+        radial-gradient(circle at top left, rgba(70, 102, 255, 0.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(14, 165, 183, 0.08), transparent 24%),
+        linear-gradient(180deg, #fbfcfe 0%, #f5f8fc 100%);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     a {
@@ -55,118 +63,226 @@
     }
 
     .container {
-      width: min(calc(100% - 28px), var(--max));
+      width: min(calc(100% - 32px), var(--max));
       margin: 0 auto;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 11px 17px;
-      border-radius: 12px;
-      font-weight: 600;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.84);
+      border-bottom: 1px solid rgba(201, 214, 230, 0.75);
+    }
+
+    .topbar-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand strong {
+      color: var(--title);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .top-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .top-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
       transition: 0.2s;
-      font-size: 0.96rem;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      box-shadow: 0 10px 24px rgba(124, 156, 255, 0.18);
-    }
-
-    .btn-secondary {
-      border: 1px solid var(--line);
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    section {
-      padding: 72px 0;
+    .top-links a:hover {
+      color: var(--title);
     }
 
     .hero {
-      padding: 28px 0 72px;
-      min-height: 100vh;
+      padding: 56px 0 78px;
+      min-height: calc(100vh - 72px);
       display: flex;
       align-items: center;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(320px, 400px) 1fr;
-      gap: 60px;
+      grid-template-columns: minmax(320px, 420px) 1fr;
+      gap: 68px;
       align-items: center;
     }
 
-    .hero-photo {
+    .hero-photo-wrap {
+      position: relative;
       display: flex;
       justify-content: flex-start;
       align-items: center;
     }
 
+    .photo-glow {
+      position: absolute;
+      inset: 14px auto auto 20px;
+      width: 88%;
+      height: 88%;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(70, 102, 255, 0.13), rgba(14, 165, 183, 0.10));
+      filter: blur(0px);
+      z-index: 0;
+    }
+
     .photo-card {
+      position: relative;
+      z-index: 1;
       width: 100%;
       max-width: 360px;
-      border: 1px solid var(--line-strong);
-      border-radius: 24px;
+      border-radius: 26px;
       overflow: hidden;
-      background: var(--bg-soft);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
     }
 
     .photo-card img {
       width: 100%;
-      height: 430px;
+      height: 420px;
       object-fit: cover;
       object-position: center 22%;
     }
 
+    .floating-note {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      z-index: 2;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(201, 214, 230, 0.9);
+      color: var(--title);
+      font-size: 0.86rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-soft);
+    }
+
     .hero-text {
-      max-width: 580px;
+      max-width: 620px;
     }
 
     .hero-kicker {
       display: inline-block;
-      color: var(--primary-2);
+      color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       font-size: 0.76rem;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 16px;
     }
 
     .hero-text h1 {
-      font-size: clamp(1.9rem, 1.6rem + 0.9vw, 2.55rem);
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      margin-bottom: 14px;
-      font-weight: 700;
+      color: var(--title);
+      font-size: clamp(2.2rem, 1.8rem + 1vw, 3.2rem);
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+      font-weight: 800;
     }
 
     .hero-text p {
       color: var(--muted);
-      max-width: 56ch;
+      max-width: 58ch;
+      font-size: 1rem;
+      line-height: 1.9;
       margin-bottom: 24px;
-      font-size: 0.98rem;
-      line-height: 1.85;
-      font-weight: 400;
     }
 
     .hero-actions {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: 0.2s;
+      font-size: 0.96rem;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      box-shadow: 0 14px 28px rgba(70, 102, 255, 0.18);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.78);
+      border-color: var(--line);
+      color: var(--title);
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .point {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .point strong {
+      display: block;
+      color: var(--title);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .point span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
     }
 
     .mini-infos {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      margin-top: 18px;
     }
 
     .mini-infos span {
@@ -174,27 +290,32 @@
       border: 1px solid var(--line);
       border-radius: 999px;
       color: var(--muted);
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.7);
       font-size: 0.88rem;
     }
 
+    section {
+      padding: 82px 0;
+    }
+
     .section-title {
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
 
     .section-title span {
       display: inline-block;
-      color: var(--primary-2);
+      color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.14em;
       font-size: 0.78rem;
       margin-bottom: 10px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .section-title h2 {
-      font-size: clamp(1.8rem, 1.5rem + 1.3vw, 3rem);
-      line-height: 1.05;
+      color: var(--title);
+      font-size: clamp(1.9rem, 1.5rem + 1vw, 2.8rem);
+      line-height: 1.08;
       letter-spacing: -0.04em;
       margin-bottom: 10px;
     }
@@ -204,11 +325,15 @@
       max-width: 760px;
     }
 
-    .about-text {
-      max-width: 820px;
+    .about-box {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--shadow-soft);
     }
 
-    .about-text p {
+    .about-box p {
       color: var(--muted);
       margin-bottom: 16px;
       font-size: 1rem;
@@ -225,8 +350,8 @@
       padding: 11px 15px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text);
+      background: white;
+      color: var(--title);
       font-size: 0.94rem;
     }
 
@@ -238,19 +363,21 @@
 
     .project {
       border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: var(--radius);
-      padding: 22px;
+      background: rgba(255, 255, 255, 0.82);
+      border-radius: 22px;
+      padding: 24px;
       transition: 0.2s;
+      box-shadow: var(--shadow-soft);
     }
 
     .project:hover {
       transform: translateY(-4px);
-      border-color: rgba(124, 156, 255, 0.35);
+      border-color: var(--line-strong);
     }
 
     .project h3 {
-      font-size: 1.15rem;
+      color: var(--title);
+      font-size: 1.14rem;
       margin-bottom: 10px;
     }
 
@@ -268,14 +395,16 @@
 
     .project-tags span {
       font-size: 0.84rem;
-      color: var(--primary-2);
+      color: var(--accent);
+      font-weight: 600;
     }
 
     .contact-box {
       border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 20px;
-      padding: 28px;
+      background: rgba(255, 255, 255, 0.82);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--shadow-soft);
     }
 
     .contact-box p {
@@ -294,14 +423,15 @@
       border-top: 1px solid var(--line);
       color: var(--muted);
       padding: 24px 0 36px;
-      margin-top: 30px;
+      margin-top: 24px;
       font-size: 0.92rem;
+      background: rgba(255, 255, 255, 0.55);
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 980px) {
       .hero {
         min-height: auto;
-        padding: 34px 0 62px;
+        padding: 42px 0 64px;
       }
 
       .hero-grid,
@@ -313,26 +443,33 @@
         gap: 34px;
       }
 
-      .hero-photo {
-        justify-content: flex-start;
+      .hero-points {
+        grid-template-columns: 1fr;
       }
 
       .photo-card {
-        max-width: 300px;
+        max-width: 310px;
       }
 
       .photo-card img {
-        height: 360px;
+        height: 370px;
       }
     }
 
-    @media (max-width: 700px) {
-      .hero {
-        padding: 28px 0 54px;
+    @media (max-width: 720px) {
+      .topbar-inner {
+        min-height: auto;
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
       }
 
-      .hero-grid {
-        gap: 28px;
+      .top-links {
+        gap: 14px;
+      }
+
+      .hero {
+        padding: 34px 0 54px;
       }
 
       .hero-actions {
@@ -341,30 +478,48 @@
 
       .btn {
         width: 100%;
-        text-align: center;
       }
 
       section {
-        padding: 58px 0;
+        padding: 62px 0;
       }
 
       .photo-card {
-        max-width: 270px;
+        max-width: 280px;
       }
 
       .photo-card img {
-        height: 320px;
+        height: 330px;
       }
     }
   </style>
 </head>
 <body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#inicio">
+        <strong>Nicolas Rios Faller</strong>
+        <span>Desenvolvedor .NET</span>
+      </a>
+
+      <nav class="top-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato">Contato</a>
+        <a href="https://www.linkedin.com/in/nicolas-rios-faller-3774a0203" target="_blank" rel="noreferrer">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
+
   <main>
     <section class="hero" id="inicio">
       <div class="container hero-grid">
-        <div class="hero-photo">
+        <div class="hero-photo-wrap">
+          <div class="photo-glow"></div>
+
           <div class="photo-card">
             <img src="./assets/profile.jpeg" alt="Foto de Nicolas Rios Faller" />
+            <div class="floating-note">Disponível para oportunidades</div>
           </div>
         </div>
 
@@ -380,6 +535,21 @@
             <a class="btn btn-primary" href="#projetos">Ver projetos</a>
             <a class="btn btn-secondary" href="./assets/resume.pdf" target="_blank">Currículo</a>
             <a class="btn btn-secondary" href="https://www.linkedin.com/in/nicolas-rios-faller-3774a0203" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+
+          <div class="hero-points">
+            <div class="point">
+              <strong>APIs e backend</strong>
+              <span>Construção de soluções em C# e .NET.</span>
+            </div>
+            <div class="point">
+              <strong>Integrações</strong>
+              <span>Conexão entre sistemas e fluxos técnicos.</span>
+            </div>
+            <div class="point">
+              <strong>Automação</strong>
+              <span>Menos trabalho manual, mais consistência.</span>
+            </div>
           </div>
 
           <div class="mini-infos">
@@ -403,7 +573,7 @@
           </p>
         </div>
 
-        <div class="about-text">
+        <div class="about-box">
           <p>
             Ao longo da minha trajetória, trabalhei muito próximo de operações técnicas e isso me deu uma base forte para entender onde estão os gargalos, o retrabalho e os pontos que podem ser resolvidos com software.
           </p>
