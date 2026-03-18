@@ -332,11 +332,45 @@
       font-weight: 600;
     }
 
-    .contact-links {
+    .contact-list {
+      list-style: none;
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 18px;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .contact-list li {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+    }
+
+    .contact-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .contact-list strong {
+      color: var(--text);
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .contact-list a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.22);
+      text-underline-offset: 4px;
+      transition: 0.2s ease;
+      word-break: break-word;
+    }
+
+    .contact-list a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
     }
 
     footer {
@@ -553,14 +587,28 @@
         </div>
 
         <div class="contact-box">
-          <p>
-            Se quiser entrar em contato ou acompanhar meu perfil profissional, os links estão aqui embaixo.
-          </p>
-
-          <div class="contact-links">
-            <a class="btn btn-primary" href="mailto:nfaller.rios@gmail.com">nfaller.rios@gmail.com</a>
-            <a class="btn btn-secondary" href="https://www.linkedin.com/in/nicolas-rios-faller-3774a0203" target="_blank" rel="noreferrer">LinkedIn</a>
-          </div>
+          <ul class="contact-list">
+            <li>
+              <strong>Email:</strong>
+              <a href="mailto:nfaller.rios@gmail.com">nfaller.rios@gmail.com</a>
+            </li>
+            <li>
+              <strong>LinkedIn:</strong>
+              <a href="https://www.linkedin.com/in/nicolas-rios-faller-3774a0203" target="_blank" rel="noreferrer">
+                linkedin.com/in/nicolas-rios-faller-3774a0203
+              </a>
+            </li>
+            <li>
+              <strong>GitHub:</strong>
+              <a href="https://github.com/Nicolas-Faller" target="_blank" rel="noreferrer">
+                github.com/Nicolas-Faller
+              </a>
+            </li>
+            <li>
+              <strong>Telefone:</strong>
+              <a href="tel:+5551982958765">(51) 98295-8765</a>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
