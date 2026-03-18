@@ -14,6 +14,7 @@
       --bg-soft: #0d1326;
       --panel: #10182c;
       --line: rgba(255, 255, 255, 0.08);
+      --line-strong: rgba(255, 255, 255, 0.14);
       --text: #eef2ff;
       --muted: #aab5d6;
       --primary: #7c9cff;
@@ -37,7 +38,7 @@
       font-family: Inter, Arial, sans-serif;
       background:
         radial-gradient(circle at top left, rgba(124, 156, 255, 0.15), transparent 28%),
-        radial-gradient(circle at top right, rgba(100, 226, 255, 0.1), transparent 24%),
+        radial-gradient(circle at top right, rgba(100, 226, 255, 0.10), transparent 24%),
         var(--bg);
       color: var(--text);
       line-height: 1.6;
@@ -108,15 +109,17 @@
 
     .btn {
       display: inline-block;
-      padding: 12px 18px;
+      padding: 11px 17px;
       border-radius: 12px;
       font-weight: 600;
       transition: 0.2s;
+      font-size: 0.96rem;
     }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--primary), var(--accent));
       color: white;
+      box-shadow: 0 10px 24px rgba(124, 156, 255, 0.18);
     }
 
     .btn-secondary {
@@ -134,13 +137,13 @@
     }
 
     .hero {
-      padding-top: 52px;
+      padding: 74px 0 82px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 42px;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 58px;
       align-items: center;
     }
 
@@ -152,11 +155,12 @@
 
     .photo-card {
       width: 100%;
-      max-width: 300px;
-      border: 1px solid var(--line);
-      border-radius: 24px;
+      max-width: 255px;
+      border: 1px solid var(--line-strong);
+      border-radius: 22px;
       overflow: hidden;
       background: var(--bg-soft);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
     }
 
     .photo-card img {
@@ -166,25 +170,42 @@
       object-position: center top;
     }
 
-    .hero-text h1 {
-      font-size: clamp(2rem, 1.7rem + 1vw, 2.8rem);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
+    .hero-text {
+      max-width: 580px;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      color: var(--primary-2);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.76rem;
+      font-weight: 700;
       margin-bottom: 16px;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(1.9rem, 1.6rem + 0.9vw, 2.55rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+      font-weight: 700;
     }
 
     .hero-text p {
       color: var(--muted);
-      max-width: 58ch;
-      margin-bottom: 22px;
-      font-size: 1rem;
+      max-width: 56ch;
+      margin-bottom: 24px;
+      font-size: 0.98rem;
+      line-height: 1.85;
+      font-weight: 400;
     }
 
     .hero-actions {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .mini-infos {
@@ -194,12 +215,12 @@
     }
 
     .mini-infos span {
-      padding: 10px 14px;
+      padding: 9px 13px;
       border: 1px solid var(--line);
       border-radius: 999px;
       color: var(--muted);
       background: rgba(255, 255, 255, 0.03);
-      font-size: 0.92rem;
+      font-size: 0.88rem;
     }
 
     .section-title {
@@ -332,12 +353,8 @@
         justify-content: flex-start;
       }
 
-      .hero-text {
-        order: 2;
-      }
-
-      .hero-photo {
-        order: 1;
+      .photo-card {
+        max-width: 235px;
       }
     }
 
@@ -350,6 +367,14 @@
 
       .nav-links {
         gap: 14px;
+      }
+
+      .hero {
+        padding: 54px 0 62px;
+      }
+
+      .hero-grid {
+        gap: 28px;
       }
 
       .hero-actions {
@@ -393,6 +418,7 @@
         </div>
 
         <div class="hero-text">
+          <span class="hero-kicker">Portfólio</span>
           <h1>Desenvolvedor .NET</h1>
           <p>
             Sou Nicolas, desenvolvedor com foco em <strong>C# / .NET</strong>, APIs, automação e integração de sistemas.
