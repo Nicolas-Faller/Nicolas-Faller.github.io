@@ -1,632 +1,732 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nicolas Rios Faller | Portfólio</title>
-  <meta
-    name="description"
-    content="Portfólio de Nicolas Rios Faller, desenvolvedor .NET com foco em C#, APIs, integração entre sistemas e aplicações backend."
-  />
-  <style>
-    :root {
-      --bg: #08111f;
-      --bg-2: #0b1628;
-      --bg-3: #0f1d33;
-      --panel: rgba(14, 26, 46, 0.72);
-      --panel-soft: rgba(18, 31, 53, 0.55);
-      --line: rgba(255, 255, 255, 0.08);
-      --line-strong: rgba(255, 255, 255, 0.12);
-      --text: #edf2ff;
-      --muted: #a8b6d1;
-      --title: #ffffff;
-      --primary: #6f7cff;
-      --primary-2: #8b5cf6;
-      --accent: #5ee7ff;
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.30);
-      --max: 1140px;
-      --radius: 24px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Inter, Arial, sans-serif;
-      color: var(--text);
-      background:
-        linear-gradient(90deg, rgba(255,255,255,0.035), transparent 12%, transparent 88%, rgba(255,255,255,0.03)),
-        radial-gradient(circle at left center, rgba(111,124,255,0.10), transparent 24%),
-        radial-gradient(circle at right center, rgba(94,231,255,0.08), transparent 20%),
-        linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
-      min-height: 100vh;
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      width: 72px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body::before {
-      left: 0;
-      background: linear-gradient(90deg, rgba(4, 8, 16, 0.75), rgba(4, 8, 16, 0));
-    }
-
-    body::after {
-      right: 0;
-      background: linear-gradient(270deg, rgba(4, 8, 16, 0.75), rgba(4, 8, 16, 0));
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    .container {
-      width: min(calc(100% - 36px), var(--max));
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero {
-      min-height: auto;
-      display: flex;
-      align-items: center;
-      padding: 26px 0 10px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(320px, 430px) 1fr;
-      gap: 52px;
-      align-items: center;
-    }
-
-    .hero-photo-wrap {
-      position: relative;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-    }
-
-    .photo-backdrop {
-      position: absolute;
-      inset: auto auto -18px 18px;
-      width: 88%;
-      height: 88%;
-      border-radius: 28px;
-      background: linear-gradient(135deg, rgba(111,124,255,0.18), rgba(94,231,255,0.10));
-      z-index: 0;
-    }
-
-    .photo-card {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 360px;
-      border-radius: 28px;
-      overflow: hidden;
-      border: 1px solid var(--line-strong);
-      background: rgba(255, 255, 255, 0.02);
-      box-shadow: var(--shadow);
-    }
-
-    .photo-card img {
-      width: 100%;
-      height: 430px;
-      object-fit: cover;
-      object-position: center 26%;
-    }
-
-    .hero-text {
-      max-width: 700px;
-    }
-
-    .hero-text h1 {
-      color: var(--title);
-      font-size: clamp(2.35rem, 2rem + 1.2vw, 3.6rem);
-      line-height: 1.04;
-      letter-spacing: -0.04em;
-      margin-bottom: 18px;
-      font-weight: 800;
-    }
-
-    .hero-text p {
-      color: var(--muted);
-      font-size: 1.03rem;
-      line-height: 1.9;
-      max-width: 64ch;
-      margin-bottom: 28px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 20px;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: 0.98rem;
-      transition: 0.2s ease;
-      border: 1px solid transparent;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      color: white;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      box-shadow: 0 14px 28px rgba(111, 124, 255, 0.25);
-    }
-
-    .hero-stack {
-      margin-top: 8px;
-    }
-
-    .hero-stack-label {
-      display: block;
-      color: var(--muted);
-      font-size: 0.88rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-
-    .hero-stack-icons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .hero-stack-icons img {
-      width: 36px;
-      height: 36px;
-      object-fit: contain;
-      opacity: 0.92;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.28));
-    }
-
-    .hero-stack-icons img:hover {
-      transform: translateY(-2px);
-      opacity: 1;
-    }
-
-    section {
-      padding: 48px 0;
-    }
-
-    #sobre {
-      padding-top: 20px;
-    }
-
-    .section-title {
-      margin-bottom: 18px;
-    }
-
-    .section-title h2 {
-      color: var(--title);
-      font-size: clamp(1.9rem, 1.55rem + 1vw, 2.8rem);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      margin-bottom: 10px;
-    }
-
-    .section-title p {
-      color: var(--muted);
-      max-width: 760px;
-    }
-
-    .about-box,
-    .contact-box,
-    .project {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-    }
-
-    .about-box,
-    .contact-box {
-      padding: 30px;
-    }
-
-    .about-box p,
-    .contact-box p {
-      color: var(--muted);
-      margin-bottom: 18px;
-      font-size: 1rem;
-      line-height: 1.85;
-    }
-
-    .about-box p:last-of-type,
-    .contact-box p:last-of-type {
-      margin-bottom: 0;
-    }
-
-    .about-note {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 0.98rem;
-      line-height: 1.8;
-    }
-
-    .about-note a {
-      color: var(--text);
-      text-decoration: underline;
-      text-decoration-color: rgba(255, 255, 255, 0.28);
-      text-underline-offset: 4px;
-      transition: 0.2s ease;
-    }
-
-    .about-note a:hover {
-      color: var(--accent);
-      text-decoration-color: var(--accent);
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .project {
-      padding: 24px;
-      transition: 0.2s ease;
-    }
-
-    .project:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255, 255, 255, 0.14);
-    }
-
-    .project h3 {
-      color: var(--title);
-      font-size: 1.15rem;
-      margin-bottom: 10px;
-    }
-
-    .project p {
-      color: var(--muted);
-      margin-bottom: 16px;
-      font-size: 0.97rem;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .project-tags span {
-      color: var(--accent);
-      font-size: 0.84rem;
-      font-weight: 600;
-    }
-
-    .contact-section .section-title {
-      margin-bottom: 10px;
-    }
-
-    .contact-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-top: 0;
-    }
-
-    .contact-list li {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.8;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 12px;
-    }
-
-    .contact-list li:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .contact-list strong {
-      color: var(--text);
-      font-weight: 700;
-      margin-right: 8px;
-    }
-
-    .contact-list a {
-      color: var(--muted);
-      text-decoration: underline;
-      text-decoration-color: rgba(255, 255, 255, 0.22);
-      text-underline-offset: 4px;
-      transition: 0.2s ease;
-      word-break: break-word;
-    }
-
-    .contact-list a:hover {
-      color: var(--accent);
-      text-decoration-color: var(--accent);
-    }
-
-    footer {
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      padding: 24px 0 36px;
-      margin-top: 18px;
-      font-size: 0.92rem;
-    }
-
-    @media (max-width: 980px) {
-      .hero {
-        min-height: auto;
-        padding: 30px 0 10px;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nicolas Rios Faller | Portfólio</title>
+    <meta
+      name="description"
+      content="Portfólio de Nicolas Rios Faller, desenvolvedor .NET com foco em C#, APIs, integração entre sistemas e aplicações backend."
+    />
+    <style>
+      :root {
+        --bg: #08111f;
+        --bg-2: #0b1628;
+        --bg-3: #0f1d33;
+        --panel: rgba(14, 26, 46, 0.72);
+        --panel-soft: rgba(18, 31, 53, 0.55);
+        --line: rgba(255, 255, 255, 0.08);
+        --line-strong: rgba(255, 255, 255, 0.12);
+        --text: #edf2ff;
+        --muted: #a8b6d1;
+        --title: #ffffff;
+        --primary: #6f7cff;
+        --primary-2: #8b5cf6;
+        --accent: #5ee7ff;
+        --shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        --max: 1140px;
+        --radius: 24px;
       }
 
-      .hero-grid,
-      .projects {
-        grid-template-columns: 1fr;
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Inter, Arial, sans-serif;
+        color: var(--text);
+        background:
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.035),
+            transparent 12%,
+            transparent 88%,
+            rgba(255, 255, 255, 0.03)
+          ),
+          radial-gradient(
+            circle at left center,
+            rgba(111, 124, 255, 0.1),
+            transparent 24%
+          ),
+          radial-gradient(
+            circle at right center,
+            rgba(94, 231, 255, 0.08),
+            transparent 20%
+          ),
+          linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
+        min-height: 100vh;
+        line-height: 1.65;
+        overflow-x: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        width: 72px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      body::before {
+        left: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(4, 8, 16, 0.75),
+          rgba(4, 8, 16, 0)
+        );
+      }
+
+      body::after {
+        right: 0;
+        background: linear-gradient(
+          270deg,
+          rgba(4, 8, 16, 0.75),
+          rgba(4, 8, 16, 0)
+        );
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .container {
+        width: min(calc(100% - 36px), var(--max));
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero {
+        min-height: auto;
+        display: flex;
+        align-items: center;
+        padding: 26px 0 42px;
       }
 
       .hero-grid {
-        gap: 32px;
+        display: grid;
+        grid-template-columns: minmax(320px, 430px) 1fr;
+        gap: 52px;
+        align-items: center;
+      }
+
+      .hero-photo-wrap {
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      .photo-backdrop {
+        position: absolute;
+        inset: auto auto -18px 18px;
+        width: 88%;
+        height: 88%;
+        border-radius: 28px;
+        background: linear-gradient(
+          135deg,
+          rgba(111, 124, 255, 0.18),
+          rgba(94, 231, 255, 0.1)
+        );
+        z-index: 0;
       }
 
       .photo-card {
-        max-width: 310px;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 360px;
+        border-radius: 28px;
+        overflow: hidden;
+        border: 1px solid var(--line-strong);
+        background: rgba(255, 255, 255, 0.02);
+        box-shadow: var(--shadow);
       }
 
       .photo-card img {
-        height: 370px;
-      }
-    }
-
-    @media (max-width: 720px) {
-      body::before,
-      body::after {
-        width: 26px;
+        width: 100%;
+        height: 430px;
+        object-fit: cover;
+        object-position: center 26%;
       }
 
-      .hero {
-        padding: 22px 0 4px;
+      .hero-text {
+        max-width: 700px;
+      }
+
+      .hero-text h1 {
+        color: var(--title);
+        font-size: clamp(2.35rem, 2rem + 1.2vw, 3.6rem);
+        line-height: 1.04;
+        letter-spacing: -0.04em;
+        margin-bottom: 18px;
+        font-weight: 800;
+      }
+
+      .hero-text p {
+        color: var(--muted);
+        font-size: 1.03rem;
+        line-height: 1.9;
+        max-width: 64ch;
+        margin-bottom: 28px;
       }
 
       .hero-actions {
-        flex-direction: column;
-        align-items: flex-start;
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
       }
 
       .btn {
-        width: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 20px;
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: 0.98rem;
+        transition: 0.2s ease;
+        border: 1px solid transparent;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        color: white;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        box-shadow: 0 14px 28px rgba(111, 124, 255, 0.25);
+      }
+
+      .hero-stack {
+        margin-top: 8px;
+      }
+
+      .hero-stack-label {
+        display: block;
+        color: var(--muted);
+        font-size: 0.88rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
       }
 
       .hero-stack-icons {
-        gap: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
       }
 
       .hero-stack-icons img {
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+        opacity: 0.92;
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s ease;
+        filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.28));
+      }
+
+      .hero-stack-icons img:hover {
+        transform: translateY(-2px);
+        opacity: 1;
       }
 
       section {
-        padding: 38px 0;
+        padding: 42px 0;
       }
 
-      #sobre {
-        padding-top: 12px;
+      .section-title {
+        margin-bottom: 18px;
       }
 
-      .photo-card {
-        max-width: 280px;
+      .section-title h2 {
+        color: var(--title);
+        font-size: clamp(1.9rem, 1.55rem + 1vw, 2.8rem);
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+        margin-bottom: 10px;
       }
 
-      .photo-card img {
-        height: 330px;
+      .section-title p {
+        color: var(--muted);
+        max-width: 760px;
       }
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <section class="hero" id="inicio">
-      <div class="container hero-grid">
-        <div class="hero-photo-wrap">
-          <div class="photo-backdrop"></div>
-          <div class="photo-card">
-            <img src="./assets/profile.jpeg" alt="Foto de Nicolas Rios Faller" />
+
+      .about-box,
+      .contact-box,
+      .project {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      .about-box,
+      .contact-box {
+        padding: 30px;
+      }
+
+      .about-box p,
+      .contact-box p {
+        color: var(--muted);
+        margin-bottom: 18px;
+        font-size: 1rem;
+        line-height: 1.85;
+      }
+
+      .about-box p:last-of-type,
+      .contact-box p:last-of-type {
+        margin-bottom: 0;
+      }
+
+      .about-note {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 0.98rem;
+        line-height: 1.8;
+      }
+
+      .about-note a {
+        color: var(--text);
+        text-decoration: underline;
+        text-decoration-color: rgba(255, 255, 255, 0.28);
+        text-underline-offset: 4px;
+        transition: 0.2s ease;
+      }
+
+      .about-note a:hover {
+        color: var(--accent);
+        text-decoration-color: var(--accent);
+      }
+
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .project {
+        padding: 24px;
+        transition: 0.2s ease;
+      }
+
+      .project:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255, 255, 255, 0.14);
+      }
+
+      .project h3 {
+        color: var(--title);
+        font-size: 1.15rem;
+        margin-bottom: 10px;
+      }
+
+      .project p {
+        color: var(--muted);
+        margin-bottom: 16px;
+        font-size: 0.97rem;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .project-tags span {
+        color: var(--accent);
+        font-size: 0.84rem;
+        font-weight: 600;
+      }
+
+      .contact-section .section-title {
+        margin-bottom: 18px;
+      }
+
+      .contact-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 0;
+      }
+
+      .contact-list li {
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.8;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 12px;
+      }
+
+      .contact-list li:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .contact-list strong {
+        color: var(--text);
+        font-weight: 700;
+        margin-right: 8px;
+      }
+
+      .contact-list a {
+        color: var(--muted);
+        text-decoration: underline;
+        text-decoration-color: rgba(255, 255, 255, 0.22);
+        text-underline-offset: 4px;
+        transition: 0.2s ease;
+        word-break: break-word;
+      }
+
+      .contact-list a:hover {
+        color: var(--accent);
+        text-decoration-color: var(--accent);
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        padding: 24px 0 36px;
+        margin-top: 18px;
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 980px) {
+        .hero {
+          padding: 30px 0 34px;
+        }
+
+        .hero-grid,
+        .projects {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-grid {
+          gap: 32px;
+        }
+
+        .photo-card {
+          max-width: 310px;
+        }
+
+        .photo-card img {
+          height: 370px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        body::before,
+        body::after {
+          width: 26px;
+        }
+
+        .hero {
+          padding: 22px 0 28px;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .hero-stack-icons {
+          gap: 12px;
+        }
+
+        .hero-stack-icons img {
+          width: 32px;
+          height: 32px;
+        }
+
+        section {
+          padding: 34px 0;
+        }
+
+        .photo-card {
+          max-width: 280px;
+        }
+
+        .photo-card img {
+          height: 330px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero" id="inicio">
+        <div class="container hero-grid">
+          <div class="hero-photo-wrap">
+            <div class="photo-backdrop"></div>
+            <div class="photo-card">
+              <img
+                src="./assets/profile.jpeg"
+                alt="Foto de Nicolas Rios Faller"
+              />
+            </div>
+          </div>
+
+          <div class="hero-text">
+            <h1>Desenvolvedor .NET</h1>
+            <p>
+              Desenvolvimento de soluções backend em C# / .NET, com ênfase em
+              APIs, integrações e aplicações criadas para dar suporte a
+              operações que exigem organização, confiabilidade e clareza
+              técnica. O trabalho é voltado à construção de softwares com
+              estrutura sólida, comunicação eficiente entre sistemas e base
+              preparada para manutenção e crescimento.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#projetos">Ver projetos</a>
+            </div>
+
+            <div class="hero-stack">
+              <span class="hero-stack-label">Core stack</span>
+
+              <div class="hero-stack-icons">
+                <img
+                  src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg"
+                  alt="C#"
+                  title="C#"
+                />
+                <img
+                  src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dot-net/dot-net-original.svg"
+                  alt=".NET"
+                  title=".NET"
+                />
+                <img
+                  src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dotnetcore/dotnetcore-original.svg"
+                  alt=".NET Core"
+                  title=".NET Core"
+                />
+                <img
+                  src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg"
+                  alt="PostgreSQL"
+                  title="PostgreSQL"
+                />
+                <img
+                  src="https://raw.githubusercontent.com/devicons/devicon/master/icons/microsoftsqlserver/microsoftsqlserver-plain.svg"
+                  alt="SQL Server"
+                  title="SQL Server"
+                />
+                <img
+                  src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg"
+                  alt="Git"
+                  title="Git"
+                />
+                <img
+                  src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg"
+                  alt="Linux"
+                  title="Linux"
+                />
+                <img
+                  src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"
+                  alt="Docker"
+                  title="Docker"
+                />
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="hero-text">
-          <h1>Desenvolvedor .NET</h1>
-          <p>
-            Desenvolvimento de soluções backend em C# / .NET, com ênfase em APIs, integrações e aplicações criadas para dar suporte a operações que exigem organização, confiabilidade e clareza técnica. O trabalho é voltado à construção de softwares com estrutura sólida, comunicação eficiente entre sistemas e base preparada para manutenção e crescimento.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projetos">Ver projetos</a>
+      <section id="sobre">
+        <div class="container">
+          <div class="section-title">
+            <h2>Sobre</h2>
           </div>
 
-          <div class="hero-stack">
-            <span class="hero-stack-label">Core stack</span>
+          <div class="about-box">
+            <p>
+              Sou Nicolas, formado em Ciência da Computação pela Universidade La
+              Salle, em Canoas, no Rio Grande do Sul. Atuo há quatro anos na
+              área de desenvolvimento como desenvolvedor .NET, com foco
+              principalmente no backend de aplicações e na construção de
+              soluções que exigem integração entre sistemas, estabilidade e
+              clareza técnica.
+            </p>
 
-            <div class="hero-stack-icons">
-              <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="C#" title="C#" />
-              <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dot-net/dot-net-original.svg" alt=".NET" title=".NET" />
-              <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dotnetcore/dotnetcore-original.svg" alt=".NET Core" title=".NET Core" />
-              <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" title="PostgreSQL" />
-              <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="SQL Server" title="SQL Server" />
-              <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git" title="Git" />
-              <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="Linux" title="Linux" />
-              <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" title="Docker" />
-            </div>
+            <p>
+              Ao longo desse período, passei a atuar em projetos nos quais o
+              software precisava ir além da entrega funcional imediata,
+              sustentando operações do dia a dia, conectando fluxos distintos e
+              organizando informações de forma confiável. Esse contexto
+              consolidou meu interesse por APIs, aplicações web e soluções
+              backend capazes de servir como base sólida para ambientes que
+              dependem de comunicação contínua entre sistemas, banco de dados e
+              regras de negócio bem definidas.
+            </p>
+
+            <p>
+              Minha forma de trabalhar está ligada à criação de soluções
+              compreensíveis, bem estruturadas e sustentáveis ao longo do tempo.
+              Documentação, entendimento dos requisitos, organização técnica do
+              projeto, separação de ambientes e continuidade da aplicação fazem
+              parte dessa visão. Tenho minha base principal no ecossistema .NET,
+              com foco atual em .NET 8 e experiência também em outras versões da
+              plataforma, além do uso de recursos ligados a banco de dados,
+              conteinerização e estruturação modular de soluções.
+            </p>
+
+            <p class="about-note">
+              Para mais detalhes sobre experiência, formação e projetos, você
+              pode acessar meu
+              <a href="./assets/resume.pdf" target="_blank" rel="noreferrer"
+                >currículo em PDF</a
+              >.
+            </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="sobre">
-      <div class="container">
-        <div class="section-title">
-          <h2>Sobre</h2>
-        </div>
-
-        <div class="about-box">
-          <p>
-            Sou Nicolas, formado em Ciência da Computação pela Universidade La Salle, em Canoas, no Rio Grande do Sul. Atuo há quatro anos na área de desenvolvimento como desenvolvedor .NET, com foco principalmente no backend de aplicações e na construção de soluções que exigem integração entre sistemas, estabilidade e clareza técnica.
-          </p>
-
-          <p>
-            Ao longo desse período, passei a atuar em projetos nos quais o software precisava ir além da entrega funcional imediata, sustentando operações do dia a dia, conectando fluxos distintos e organizando informações de forma confiável. Esse contexto consolidou meu interesse por APIs, aplicações web e soluções backend capazes de servir como base sólida para ambientes que dependem de comunicação contínua entre sistemas, banco de dados e regras de negócio bem definidas.
-          </p>
-
-          <p>
-            Minha forma de trabalhar está ligada à criação de soluções compreensíveis, bem estruturadas e sustentáveis ao longo do tempo. Documentação, entendimento dos requisitos, organização técnica do projeto, separação de ambientes e continuidade da aplicação fazem parte dessa visão. Tenho minha base principal no ecossistema .NET, com foco atual em .NET 8 e experiência também em outras versões da plataforma, além do uso de recursos ligados a banco de dados, conteinerização e estruturação modular de soluções.
-          </p>
-
-          <p class="about-note">
-            Para mais detalhes sobre experiência, formação e projetos, você pode acessar meu <a href="./assets/resume.pdf" target="_blank" rel="noreferrer">currículo em PDF</a>.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="projetos">
-      <div class="container">
-        <div class="section-title">
-          <h2>Projetos</h2>
-          <p>
-            Soluções construídas com foco em backend, integração entre sistemas e aplicações voltadas a cenários reais de operação.
-          </p>
-        </div>
-
-        <div class="projects">
-          <article class="project">
-            <h3>Backup Ingestion API</h3>
+      <section id="projetos">
+        <div class="container">
+          <div class="section-title">
+            <h2>Projetos</h2>
             <p>
-              Solução voltada à ingestão, consolidação e estruturação de dados operacionais a partir de múltiplas origens, criando uma base única e consultável para cenários que exigem consistência e continuidade.
+              Soluções construídas com foco em backend, integração entre
+              sistemas e aplicações voltadas a cenários reais de operação.
             </p>
-            <div class="project-tags">
-              <span>Backend</span>
-              <span>API</span>
-              <span>Integração</span>
-              <span>Dados</span>
-            </div>
-          </article>
+          </div>
 
-          <article class="project">
-            <h3>Zabbix Host Migrator</h3>
-            <p>
-              Aplicação criada para apoiar fluxos de migração entre ambientes distintos, com foco em integração entre instâncias, redução de esforço manual e maior previsibilidade operacional.
-            </p>
-            <div class="project-tags">
-              <span>Zabbix</span>
-              <span>Integração</span>
-              <span>Backend</span>
-              <span>Operação</span>
-            </div>
-          </article>
+          <div class="projects">
+            <article class="project">
+              <h3>Backup Ingestion API</h3>
+              <p>
+                Solução voltada à ingestão, consolidação e estruturação de dados
+                operacionais a partir de múltiplas origens, criando uma base
+                única e consultável para cenários que exigem consistência e
+                continuidade.
+              </p>
+              <div class="project-tags">
+                <span>Backend</span>
+                <span>API</span>
+                <span>Integração</span>
+                <span>Dados</span>
+              </div>
+            </article>
 
-          <article class="project">
-            <h3>Infrastructure Snapshot Reporter</h3>
-            <p>
-              Estrutura voltada à consolidação de informações técnicas e geração de relatórios organizados, apoiando acompanhamento operacional, análise e visualização de dados.
-            </p>
-            <div class="project-tags">
-              <span>.NET</span>
-              <span>Relatórios</span>
-              <span>PDF / Excel</span>
-              <span>Dados</span>
-            </div>
-          </article>
+            <article class="project">
+              <h3>Zabbix Host Migrator</h3>
+              <p>
+                Aplicação criada para apoiar fluxos de migração entre ambientes
+                distintos, com foco em integração entre instâncias, redução de
+                esforço manual e maior previsibilidade operacional.
+              </p>
+              <div class="project-tags">
+                <span>Zabbix</span>
+                <span>Integração</span>
+                <span>Backend</span>
+                <span>Operação</span>
+              </div>
+            </article>
 
-          <article class="project">
-            <h3>Qualitor Hours Analytics</h3>
-            <p>
-              Projeto direcionado à coleta e tratamento de informações por API, com foco em acompanhamento por período, organização dos dados e apoio à análise operacional.
-            </p>
-            <div class="project-tags">
-              <span>API</span>
-              <span>Analytics</span>
-              <span>Integração</span>
-              <span>Backend</span>
-            </div>
-          </article>
+            <article class="project">
+              <h3>Infrastructure Snapshot Reporter</h3>
+              <p>
+                Estrutura voltada à consolidação de informações técnicas e
+                geração de relatórios organizados, apoiando acompanhamento
+                operacional, análise e visualização de dados.
+              </p>
+              <div class="project-tags">
+                <span>.NET</span>
+                <span>Relatórios</span>
+                <span>PDF / Excel</span>
+                <span>Dados</span>
+              </div>
+            </article>
+
+            <article class="project">
+              <h3>Qualitor Hours Analytics</h3>
+              <p>
+                Projeto direcionado à coleta e tratamento de informações por
+                API, com foco em acompanhamento por período, organização dos
+                dados e apoio à análise operacional.
+              </p>
+              <div class="project-tags">
+                <span>API</span>
+                <span>Analytics</span>
+                <span>Integração</span>
+                <span>Backend</span>
+              </div>
+            </article>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="contato" class="contact-section">
-      <div class="container">
-        <div class="section-title">
-          <h2>Contato</h2>
+      <section id="contato" class="contact-section">
+        <div class="container">
+          <div class="section-title">
+            <h2>Contato</h2>
+          </div>
+
+          <div class="contact-box">
+            <ul class="contact-list">
+              <li>
+                <strong>Email:</strong>
+                <a href="mailto:nfaller.rios@gmail.com"
+                  >nfaller.rios@gmail.com</a
+                >
+              </li>
+              <li>
+                <strong>LinkedIn:</strong>
+                <a
+                  href="https://www.linkedin.com/in/nicolas-rios-faller-3774a0203"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  linkedin.com/in/nicolas-rios-faller-3774a0203
+                </a>
+              </li>
+              <li>
+                <strong>GitHub:</strong>
+                <a
+                  href="https://github.com/Nicolas-Faller"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  github.com/Nicolas-Faller
+                </a>
+              </li>
+              <li>
+                <strong>Telefone:</strong>
+                <a href="tel:+5551982958765">(51) 98295-8765</a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </section>
+    </main>
 
-        <div class="contact-box">
-          <ul class="contact-list">
-            <li>
-              <strong>Email:</strong>
-              <a href="mailto:nfaller.rios@gmail.com">nfaller.rios@gmail.com</a>
-            </li>
-            <li>
-              <strong>LinkedIn:</strong>
-              <a href="https://www.linkedin.com/in/nicolas-rios-faller-3774a0203" target="_blank" rel="noreferrer">
-                linkedin.com/in/nicolas-rios-faller-3774a0203
-              </a>
-            </li>
-            <li>
-              <strong>GitHub:</strong>
-              <a href="https://github.com/Nicolas-Faller" target="_blank" rel="noreferrer">
-                github.com/Nicolas-Faller
-              </a>
-            </li>
-            <li>
-              <strong>Telefone:</strong>
-              <a href="tel:+5551982958765">(51) 98295-8765</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      © 2026 Nicolas Rios Faller
-    </div>
-  </footer>
-</body>
+    <footer>
+      <div class="container">© 2026 Nicolas Rios Faller</div>
+    </footer>
+  </body>
 </html>
